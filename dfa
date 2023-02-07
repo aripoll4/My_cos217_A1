@@ -1,1 +1,33 @@
+Normal (accept) <-- the start state
+/*   : In_Comment
+"    : In_String
+'    : In_Char
+Other: Normal
+
+In_Comment (reject)
+*/   : Normal
+\    : IC\
+Other: In_Comment
+
+IC\ (reject)
+\    : IC\
+Other: In_Comment
+
+In_Char (accept)
+'    : Normal
+\    : ICh\
+Other: In_Char
+
+ICh\ (accept)
+\    : ICh\ 
+Other: In_Char
+
+In_String (accept)
+"    : Normal
+\    : IS\
+Other: In_String
+
+IS\ (accept)
+\    : IS\
+Other: In_String
 
