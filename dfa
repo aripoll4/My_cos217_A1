@@ -1,33 +1,40 @@
+Alfred Ripoll
+dfa
+
 Normal (accept) <-- the start state
-/*   : In_Comment
-"    : In_String
-'    : In_Char
+/    : POSSIBLE_COMMENT
+"    : STRING
+'    : CHAR
 Other: Normal
 
-In_Comment (reject)
-*/   : Normal
-\    : IC\
-Other: In_Comment
+POSSIBLE_COMMENT (accept)
+*    : Comment
+"    : String
+'    : Char
+Other: Normal
 
-IC\ (reject)
-\    : IC\
-Other: In_Comment
+COMMENT (reject)
+*    : POSSIBLE_ENDCOMMENT
+Other: Comment
 
-In_Char (accept)
-'    : Normal
-\    : ICh\
-Other: In_Char
+POSSIBLE_ENDCOMMENT (reject)
+/    : Normal
+Other: Comment
 
-ICh\ (accept)
-\    : ICh\ 
-Other: In_Char
-
-In_String (accept)
+String (accept)
+\    : String_Backslash
 "    : Normal
-\    : IS\
-Other: In_String
+Other: String
 
-IS\ (accept)
-\    : IS\
-Other: In_String
+String_Backslash (accept)
+\    : String_Backslash
+Other: String
 
+Char (accept)
+\    : Char_Backslash
+'    : Normal
+Other: Char
+
+Char_Backslash (accept)
+\    : Char_Backslash
+Other: Char
