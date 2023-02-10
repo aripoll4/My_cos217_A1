@@ -2,7 +2,7 @@
  Alfred Ripoll
 decomment.c 
 */
-#include <stdio.h>
+#Include<stdio.h>
 /*
 Reads a text file as input and removes comments between ["/", "*"] and ["*","/"] while ignoring this if inside a String or character literal. Also ignores the next character after a "\" if found inside a String or character literal. */
 
