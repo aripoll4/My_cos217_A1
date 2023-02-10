@@ -1,40 +1,41 @@
 Alfred Ripoll
 dfa
 
-Normal (accept) <-- the start state
+NORMAL (accept) <-- the start state
 /    : POSSIBLE_COMMENT
 "    : STRING
 '    : CHAR
-Other: Normal
+Other: NORMAL
 
 POSSIBLE_COMMENT (accept)
-*    : Comment
-"    : String
-'    : Char
-Other: Normal
+*    : COMMENT
+"    : STRING
+'    : CHAR
+Other: NORMAL
 
 COMMENT (reject)
 *    : POSSIBLE_ENDCOMMENT
-Other: Comment
+Other: COMMENT
 
 POSSIBLE_ENDCOMMENT (reject)
-/    : Normal
-Other: Comment
+/    : NORMAL
+*    : POSSIBLE_ENDCOMMENT
+Other: COMMENT
 
-String (accept)
-\    : String_Backslash
-"    : Normal
-Other: String
+STRING (accept)
+\    : STRING_BACKSLASH
+"    : NORMAL
+Other: STRING
 
-String_Backslash (accept)
-\    : String_Backslash
-Other: String
+STRING_BACHSLASH (accept)
+\    : STRING_BACKSLASH
+Other: STRING
 
-Char (accept)
-\    : Char_Backslash
-'    : Normal
-Other: Char
+CHAR (accept)
+\    : CHAR_BACKSLASH
+'    : NORMAL
+Other: CHAR
 
-Char_Backslash (accept)
-\    : Char_Backslash
-Other: Char
+CHAR_BACKSLASH (accept)
+\    : CHAR_BACKSLASH
+Other: CHAR
