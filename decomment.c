@@ -8,7 +8,7 @@ Reads a text file as std input and removes comments between ["/", "*"] and ["*",
 
 /* Different State types for */
 enum Statetype {NORMAL, POSSIBLE_COMMENT, COMMENT, POSSIBLE_ENDCOMMENT, STRING, STRING_BACKSLASH, CHAR, CHAR_BACKSLASH};
-   enum eState;
+   enum Statetype eState; /* holds the current state of the dfa*/
 
 /* Handles the character of input c when the state is NORMAL (and at the beginning of the textilfe), c is the current DFA character
 calls putchar(c) which writes c to stdout unless a character moves to POSSIBE_COMMENT state, outputs the state after the input */
@@ -202,6 +202,8 @@ int main(void) {
    }
    if (eState == COMMENT || POSSIBLE_ENDCOMMENT) {
       return -1;
+      /*Print error line to std err*/
+            fprintf(stderr, "Error: line %d: unterminated comment\n", line);
    }
    else {
       return 0;
